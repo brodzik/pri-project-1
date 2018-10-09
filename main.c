@@ -7,58 +7,48 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include <string.h>
 
-// App entry point
 int main(int argc, char *argv[])
 {
-    // Accept exactly one input string
     if (argc != 2)
     {
-        // Print correct app usage
         printf("Usage: app [string]\n");
         printf("Example: ./app \"some string\"\n");
 
-        // Exit app with errors
-        return -1;
+        return 0;
     }
 
-    // Prepare input and output string variables
-    char *input = argv[1];
-    char output[1024] = "";
-    int j = 0;
-
-    // State variable; true if the previous char was a space, else false
+    // Remember if the previous char was a space
     bool prevSpace = false;
 
-    // Iterate over each char until we hit a null terminator
-    for (int i = 0; input[i]; ++i)
+    // Iterate over each char
+    for (int i = 0; argv[1][i]; ++i)
     {
-        if (input[i] == ' ')
+        // Replace a series of spaces with a single slash
+        if (argv[1][i] == ' ')
         {
             if (!prevSpace)
             {
-                output[j++] = '/';
+                printf("/");
                 prevSpace = true;
             }
         }
-        else if (input[i] == '/')
+        // Duplicate a slash if one already exists
+        else if (argv[1][i] == '/')
         {
-            output[j++] = '/';
-            output[j++] = '/';
+            printf("//");
             prevSpace = false;
         }
+        // Leave all other chars unchanged
         else
         {
-            output[j++] = input[i];
+            printf("%c", argv[1][i]);
             prevSpace = false;
         }
     }
 
-    // Print output string
-    printf("%s\n", output);
+    printf("\n");
 
-    // Exit app with no errors
     return 0;
 }
 
