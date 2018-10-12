@@ -1,13 +1,12 @@
 /*
  *  [PRI] Project 1
- *  Replaces multiple white characters with a single slash, duplicates any existing slashes.
+ *  Replaces multiple whitespace characters with a single slash, duplicates any existing slashes.
  *  
  *  Adrian Brodzik
  *  Warsaw University of Technology
  *  Faculty of Electronics and Information Technology
  */
 
-#include <stdbool.h>
 #include <stdio.h>
 
 int main(int argc, char *argv[])
@@ -21,32 +20,28 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    // Remember if the previous char was a space
-    bool prevSpace = false;
-
     // Iterate over each char, print output char by char
     for (int i = 0; argv[1][i]; ++i)
     {
-        // Replace a series of spaces with a single slash
+        // If the current char is whitespace
         if (argv[1][i] == ' ')
         {
-            if (!prevSpace)
+            // Replace it only if it's the first whitespace char of a series,
+            // i.e. the previous char wasn't a whitespace
+            if ((i > 0 && argv[1][i - 1] != ' ') || i == 0)
             {
                 printf("/");
-                prevSpace = true;
             }
         }
         // Duplicate a slash if one already exists
         else if (argv[1][i] == '/')
         {
             printf("//");
-            prevSpace = false;
         }
         // Leave all other chars unchanged
         else
         {
             printf("%c", argv[1][i]);
-            prevSpace = false;
         }
     }
 
