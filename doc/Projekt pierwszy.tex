@@ -21,7 +21,7 @@
 \maketitle
 
 \section*{Zadanie}
-Napisz program, który wypisze linię znaków wejściowych zastępując każdy ciąg białych znaków pojedynczym znakiem ukośnika, zaś ewentualne każde wystąpienie ukośnika w linii zastąpi podwójnym ukośnikiem.
+Napisz program, który wypisze linię znaków wejściowych zastępując każdy ciąg \textit{białych} znaków pojedynczym znakiem ukośnika, zaś ewentualne każde wystąpienie ukośnika w linii zastąpi podwójnym ukośnikiem.
 \\
 \\
 Dla danych wejściowych:\\
@@ -32,13 +32,13 @@ Poprawnym wynikiem jest:\\
 \lstinline{bfvrhowev/h7u893/njio/nvfrowe//vtgrw/vvv}
 
 \section*{Problem}
-Opis problemu...
+Identyfikować ciągi białych znaków i zastępować je dokładnie jednym ukośnikiem; znajdować istniejące już wcześniej ukośniki i je duplikować.
 
 \section*{Rozwiązanie}
-Opis rozwiązania...
+Iterujemy po każdym znaku $c_{i}$ z linii znaków wejściowych. Na wyjście wypisujemy znak po znaku. Wypisujemy pojedynczy ukośnik, gdy $c_{i}$ jest znakiem białym i $c_{i-1}$ nie jest znakiem białym. Wypisujemy dwa ukosniki, gdy $c_{i}$ jest ukośnikiem. Dla znaków niebędącymi znakami białymi ani ukośnikami, wypisujemy $c_{i}$.
 
-\section*{Specyfikacja programu}
-Użyte biblioteczki, funkcje, uzasadnienie...
+\section*{Biblioteka standardowa}
+Użyto funkcję \texttt{printf} ze standardowej biblioteki \texttt{stdio.h} do wyświetlania komunikatów dla użytkownika oraz do wypisywania wyjścia programu.
 
 \section*{Schemat działania}
 \begin{center}
@@ -50,9 +50,18 @@ Użyte biblioteczki, funkcje, uzasadnienie...
 \end{center}
 
 \section*{Testowanie}
-Proces testowania i przykłady...
+Należy zwrócić uwagę na odpowiednie formatowanie wejścia programu, np. uruchamiając program
+\\\\
+\lstinline{> ./app some string  with   spaces    /}\\
+\lstinline{Usage: app [string]}\\
+\lstinline{Example: ./app "some string"}
+\\\\
+skutkuje błędem. Spacje w tym przypadku rozdzielają kolejne argumenty, tzn. nie wprowadzono jednej linii znaków ze spacjami, ale cztery. Poprawne uruchomienie byłoby
+\\\\
+\lstinline{> ./app "some string  with   spaces    /"}\\
+\lstinline{some/string/with/spaces///}
 
 \section*{Podsumowanie}
-Wnioski dotyczące projektu...
+Projekt prosty służący jako wprowadzenie do języka programowania C; zapoznanie się ze składnią, typami i funkcjami sterującymi.
 
 \end{document}
