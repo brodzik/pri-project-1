@@ -1,15 +1,18 @@
 /*
- *  Project 1
+ *  [PRI] Project 1
+ *  Replaces multiple white characters with a single slash, duplicates any existing slashes.
  *  
  *  Adrian Brodzik
  *  Warsaw University of Technology
+ *  Faculty of Electronics and Information Technology
  */
 
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 int main(int argc, char *argv[])
 {
+    // Accept only one argument
     if (argc != 2)
     {
         printf("Usage: app [string]\n");
@@ -21,7 +24,7 @@ int main(int argc, char *argv[])
     // Remember if the previous char was a space
     bool prevSpace = false;
 
-    // Iterate over each char
+    // Iterate over each char, print output char by char
     for (int i = 0; argv[1][i]; ++i)
     {
         // Replace a series of spaces with a single slash
