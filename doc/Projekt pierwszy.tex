@@ -4,7 +4,7 @@
 \usepackage{titlesec}
 \usepackage{listings}
 \usepackage{tikz}
-\usetikzlibrary{shapes, arrows}
+\usetikzlibrary{shapes, arrows, positioning, fit, backgrounds}
 
 \tikzstyle{rect} = [rectangle, draw, minimum width=7em, minimum height=2em, rounded corners]
 \tikzstyle{line} = [draw, -latex']
@@ -44,22 +44,26 @@ Użyto funkcję \texttt{printf} ze standardowej biblioteki \texttt{stdio.h} do w
 \begin{center}
 \begin{tikzpicture}[node distance = 1.5cm, auto]
 \node [rect] (start) {start};
+\node [rect, below of=start] (input) {wejście linii znaków};
+\node [rect, below of=input] (iter) {iteracja po każdym znaku};
+\node [rect, below of=input] (iter) {zastąpienie znaków};
 \node [rect, below of=start] (stop) {stop};
-\path [line] (start) -- (stop);
+\path [line] (start) -- (input);
+\path [line] (input) -- (iter);
 \end{tikzpicture}
 \end{center}
 
 \section*{Testowanie}
-Należy zwrócić uwagę na odpowiednie formatowanie wejścia programu, np. uruchamiając program
+Należy zwrócić uwagę na odpowiednie formatowanie wejścia programu, np. uruchomienie
 \\\\
-\lstinline{> ./app some string  with   spaces    /}\\
+\lstinline{> ./app /some string  with   spaces    /}\\
 \lstinline{Usage: app [string]}\\
 \lstinline{Example: ./app "some string"}
 \\\\
-skutkuje błędem. Spacje w tym przypadku rozdzielają kolejne argumenty, tzn. nie wprowadzono jednej linii znaków ze spacjami, ale cztery. Poprawne uruchomienie byłoby
+skutkuje błędem. Spacje w tym przypadku rozdzielają kolejne argumenty, tzn. nie wprowadzono jednej linii znaków, ale cztery. Poprawne uruchomienie
 \\\\
-\lstinline{> ./app "some string  with   spaces    /"}\\
-\lstinline{some/string/with/spaces///}
+\lstinline{> ./app "/some string  with   spaces    /"}\\
+\lstinline{//some/string/with/spaces///}
 
 \section*{Podsumowanie}
 Projekt prosty służący jako wprowadzenie do języka programowania C; zapoznanie się ze składnią, typami i funkcjami sterującymi.
