@@ -6,8 +6,9 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes, arrows, positioning, fit, backgrounds}
 
-\tikzstyle{rect} = [rectangle, draw, minimum width=7em, minimum height=2em, rounded corners]
-\tikzstyle{line} = [draw, -latex']
+\tikzstyle{rect} = [draw, rectangle, rounded corners, fill=white, minimum width=1.5cm, minimum height=0.7cm]
+\tikzstyle{fillonly} = [draw, rectangle, minimum width=7cm, minimum height=3cm, fill=black!10]
+\tikzstyle{line} = [draw, -latex]
 
 \lstset{basicstyle=\ttfamily, keepspaces=true}
 
@@ -42,14 +43,19 @@ Użyto funkcję \texttt{printf} ze standardowej biblioteki \texttt{stdio.h} do w
 
 \section*{Schemat działania}
 \begin{center}
-\begin{tikzpicture}[node distance = 1.5cm, auto]
+\begin{tikzpicture}
 \node [rect] (start) {start};
-\node [rect, below of=start] (input) {wejście linii znaków};
-\node [rect, below of=input] (iter) {iteracja po każdym znaku};
-\node [rect, below of=input] (iter) {zastąpienie znaków};
-\node [rect, below of=start] (stop) {stop};
+\node [rect, below=0.5cm of start] (input) {wejście linii znaków};
+\node [fillonly, below=0.5cm of input] (fill) {};
+\node [below=0.6cm of input] (iterate) {iteracja po każdym znaku};
+\node [rect, below=0.2cm of iterate] (replace) {zastąpienie znaku (jeżeli konieczne)};
+\node [rect, below=0.33cm of replace] (print) {wypisanie znaku na wyjście};
+\node [rect, below=0.5cm of fill] (stop) {stop};
+
 \path [line] (start) -- (input);
-\path [line] (input) -- (iter);
+\path [line] (input) -- (fill);
+\path [line] (replace) -- (print);
+\path [line] (fill) -- (stop);
 \end{tikzpicture}
 \end{center}
 
